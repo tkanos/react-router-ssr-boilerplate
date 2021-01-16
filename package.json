@@ -1,0 +1,36 @@
+{
+  "name": "react-redux-bootstrap-boilerplaite",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:start": "nodemon --watch dist --exec \"node dist/build/index.js\"",
+    "dev:build": "webpack --config webpack.config.js --watch"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "bootstrap": "^4.5.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "lodash": "^4.17.20",
+    "react": "^17.0.1",
+    "react-bootstrap": "^1.4.3",
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "babel-loader": "^8.2.2",
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.7",
+    "npm-run-all": "^4.1.5",
+    "webpack": "^5.15.0",
+    "webpack-cli": "^4.3.1",
+    "webpack-node-externals": "^2.5.2"
+  }
+}
