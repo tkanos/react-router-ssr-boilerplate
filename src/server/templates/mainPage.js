@@ -4,6 +4,7 @@ import { StaticRouter } from 'react-router-dom'
 import Routes from '../../isomorphic/Routes'
 import {Provider}  from 'react-redux'
 import { renderRoutes } from 'react-router-config'
+import serialize from 'serialize-javascript'
 
 export default (path, store) => {
     const content = renderToString(
@@ -27,6 +28,9 @@ export default (path, store) => {
     </head>
     <body>
       <div id="root">${content}</div>
+      <script>
+        window.INITIAL_STATE = ${serialize(store.getState())}
+      </script>
       <script src="index.js"></script>
     </body>
     </html>

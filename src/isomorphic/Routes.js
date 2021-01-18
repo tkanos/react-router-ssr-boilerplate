@@ -1,7 +1,7 @@
 import React from 'react'
 //import { Route } from 'react-router-dom'
-import Home from './components/Home/Home'
-import UserList, { initData } from './components/UsersList/UserList.js'
+import HomePage from './pages/HomePage/HomePage'
+import UserListPage, { initData } from './pages/UsersListPage/UserListPage.js'
 
 /*
 export default () => {
@@ -15,13 +15,12 @@ export default () => {
 }*/
 export default [
     {
+        ...HomePage,
         path: '/',
-        component: Home,
         exact: true
     },
     {
+        ...UserListPage,
         path: '/users',
-        component: UserList,
-        initData: initData,
     }
   ]

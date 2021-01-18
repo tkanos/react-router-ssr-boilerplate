@@ -1,7 +1,7 @@
 import React from 'react'
 import  Button  from 'react-bootstrap/Button';
 
-const Home = () => {
+const HomePage = () => {
     return (
     <div>
         <div> I'm the Home component</div>
@@ -9,4 +9,6 @@ const Home = () => {
     </div>)
 }
 
-export default Home
+export default {
+    component: HomePage
+}
