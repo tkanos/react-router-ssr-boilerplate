@@ -26,10 +26,23 @@ app.get('*', (req, res) => {
     // Attempt to call the initialisation of data, to do not have to do it in ajax on the first attempt
     const promises = matchRoutes(Routes, req.path).map(({ route }) => {
         return route.initData ? route.initData(store) : null;
+    }).map( promise => {
+        if (promise) {
+            return new Promise((resolve, reject) => {
+                promise.then(resolve).catch(resolve)
+            })
+        }
     })
 
     Promise.all(promises).then( () => {
-        res.send(mainPage(req.path, store))
+        const context = {}
+        const content = mainPage(req.path, store, context)
+
+        if (context.notFound) {
+            res.status(404)
+        }
+
+        res.send(content)
     })
 })
  

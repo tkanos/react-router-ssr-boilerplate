@@ -5,20 +5,25 @@ import Routes from '../../isomorphic/Routes'
 import {Provider}  from 'react-redux'
 import { renderRoutes } from 'react-router-config'
 import serialize from 'serialize-javascript'
+import { Helmet } from 'react-helmet'
 
-export default (path, store) => {
+export default (path, store, context) => {
     const content = renderToString(
       <Provider store={store}>
-        <StaticRouter location={path} context={{}}>
+        <StaticRouter location={path} context={context}>
           <div>{renderRoutes(Routes)}</div>
         </StaticRouter>
       </Provider>
     )
 
+    const helmet =  Helmet.renderStatic();
+
     return `
     <!doctype html>
     <html>
     <head>
+     ${helmet.title.toString()}
+     ${helmet.meta.toString()}
       <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
