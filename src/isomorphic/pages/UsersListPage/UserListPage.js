@@ -34,7 +34,7 @@ const UserListPage = () =>  {
     
 }
 
-function initData() {
+function initData(store) {
     return store.dispatch(fetchUsers())
 }
 
