@@ -6,7 +6,7 @@ import axios from 'axios'
 export default (req) => {
 
     const apiAxios = axios.create({
-        baseURL: 'http://react-ssr-api.herokuapp.com', //server call
+        baseURL: 'http://localhost:3001', // server call
         headers: { cookie: req.get('cookie') || '' }
     })
 
