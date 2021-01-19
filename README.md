@@ -1,17 +1,14 @@
-- add linter
-- read https://dev.to/marvelouswololo/how-to-server-side-render-react-hydrate-it-on-the-client-and-combine-client-and-server-routes-1a3p
-- use (renderToStream) renderToNodeStream (2h)
+- use (renderToStream) renderToNodeStream (No)
 
-- redux -> last version 99h)
+- redux -> last version
 - change structure 
 
 - env by env
 - using env api
 - using api like for smoke
 
-- React hooks ?
-    - https://medium.com/javascript-scene/do-react-hooks-replace-higher-order-components-hocs-7ae4a08b7b58
-    - hooks
+- read https://dev.to/marvelouswololo/how-to-server-side-render-react-hydrate-it-on-the-client-and-combine-client-and-server-routes-1a3p
+- read https://medium.com/javascript-scene/do-react-hooks-replace-higher-order-components-hocs-7ae4a08b7b58
 
 
 - Logging

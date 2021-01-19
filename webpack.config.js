@@ -23,7 +23,7 @@ const serverConfig = {
     node: {
         __dirname: false,
     },
-    //externals: [nodeExternals()],
+    externals: [nodeExternals()],
     //Root file of our server application
     entry: {
         "index.js": path.resolve(__dirname, "src/server/index.js"),

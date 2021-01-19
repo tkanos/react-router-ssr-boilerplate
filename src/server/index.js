@@ -6,7 +6,6 @@ import Routes from '../isomorphic/Routes'
 import 'dotenv/config'
 import mainPage from './templates/mainPage'
 import createStore from '../isomorphic/createStore'
-import { opts } from 'commander'
 
 const app = express()
 
@@ -28,7 +27,7 @@ app.get('*', (req, res) => {
         return route.initData ? route.initData(store) : null;
     }).map( promise => {
         if (promise) {
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 promise.then(resolve).catch(resolve)
             })
         }
