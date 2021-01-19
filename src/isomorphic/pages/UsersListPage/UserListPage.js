@@ -9,7 +9,7 @@ const UserListPage = () =>  {
 
     useEffect(() => {
         dispatch(fetchUsers())
-      })
+      },[])
 
     const renderUsers = () => {
         return users.map(user => {
