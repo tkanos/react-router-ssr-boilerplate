@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default() => {
+const Header = () => {
     return (
         <div>
             <Link to="/"> HomePage </Link>
         </div>
     )
 }
+
+export default Header
