@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "target": "es2017",
+      "allowSyntheticDefaultImports": false,
+      "baseUrl": "./",
+      "paths": {
+        "@actions/*": ["src/isomorphic/actions/*"],
+        "@reducers/*": ["src/isomorphic/reducers/*"],
+        "@components/*": ["src/isomorphic/components/*"],
+        "@pages/*": ["src/isomorphic/pages/*"],
+        "@config": ["src/server/config"],
+      }
+    },
+    "exclude": ["node_modules", "dist"]
+  }
