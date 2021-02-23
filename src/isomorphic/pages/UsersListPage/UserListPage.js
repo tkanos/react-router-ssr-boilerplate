@@ -1,21 +1,37 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchUsers } from '@actions'
 import { Helmet } from 'react-helmet'
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUsers, getUsers } from "./userListReducer";
 
 const UserListPage = () =>  {
     const dispatch = useDispatch();
-    const users = useSelector(state => state.users);
+
+    const users = useSelector(getUsers);
+
+    const userStatus = useSelector(state => state.users.status)
 
     useEffect(() => {
-        dispatch(fetchUsers())
-      },[])
+        if (userStatus === 'idle') {
+            dispatch(fetchUsers())
+          }
+      },[userStatus, dispatch])
 
-    const renderUsers = () => {
+      const renderUsers = () => {
         return users.map(user => {
             return <li key={user.id}>{user.name}</li>
         })
     }
+
+      let content
+
+  if (userStatus === 'loading') {
+    content = <div className="loader">Loading...</div>
+  } else if (userStatus === 'succeeded') {
+    // Sort posts in reverse chronological order by datetime string
+    content = <ul>{renderUsers()}</ul>
+  } else if (userStatus === 'failed') {
+    content = <div>error</div>
+  }
     const head = () => {
         return (
         <Helmet>
@@ -29,7 +45,7 @@ const UserListPage = () =>  {
     <div>
         {head()}
         User List:
-        <ul>{renderUsers()}</ul>
+        {content}
     </div>)
     
 }

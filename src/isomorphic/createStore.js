@@ -1,18 +1,22 @@
-import { createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
-import reducers from '@reducers'
-import axios from 'axios'
+import { configureStore } from '@reduxjs/toolkit'
+import { combineReducers } from 'redux'
+import users from '@pages/UsersListPage/userListReducer.js'
+//import axios from 'axios'
 
-export default (req) => {
+export default (/*req*/) => {
 
-    const apiAxios = axios.create({
+    /*const apiAxios = axios.create({
         baseURL: process.env.API_URL, // server call
         headers: { cookie: req.get('cookie') || '' }
-    })
+    })*/
 
-    const store = createStore(reducers, {}, applyMiddleware(thunk.withExtraArgument({
-        api: apiAxios,
-    })))
+    const reducer = combineReducers({
+        users,
+    })
+    
+    const store = configureStore({
+      reducer,
+    })
 
     return store
 }
