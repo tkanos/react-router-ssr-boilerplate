@@ -1,6 +1,3 @@
-- use (renderToStream) renderToNodeStream (No)
-
-- redux -> last version
 - change structure 
 
 - read https://dev.to/marvelouswololo/how-to-server-side-render-react-hydrate-it-on-the-client-and-combine-client-and-server-routes-1a3p
