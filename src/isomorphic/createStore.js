@@ -1,6 +1,7 @@
-import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import reducers from '@reducers'
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import { combineReducers } from 'redux'
+import users from '@pages/UsersListPage/userListReducer.js'
 import axios from 'axios'
 
 export default (req) => {
@@ -10,9 +11,14 @@ export default (req) => {
         headers: { cookie: req.get('cookie') || '' }
     })
 
-    const store = createStore(reducers, {}, applyMiddleware(thunk.withExtraArgument({
-        api: apiAxios,
-    })))
+    const reducer = combineReducers({
+        users,
+    })
+    
+    const store = configureStore({
+     reducer: reducer,
+     middleware:  [thunk.withExtraArgument({api: apiAxios}), ...getDefaultMiddleware()]
+    })
 
     return store
 }

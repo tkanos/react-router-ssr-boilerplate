@@ -1,21 +1,23 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchUsers } from '@actions'
 import { Helmet } from 'react-helmet'
+import { useSelector, useDispatch } from "react-redux";
+import { clear, getUsers, fetchAsync } from "./userListReducer";
 
 const UserListPage = () =>  {
     const dispatch = useDispatch();
-    const users = useSelector(state => state.users);
+
+    const users = useSelector(getUsers);
 
     useEffect(() => {
-        dispatch(fetchUsers())
-      },[])
+            dispatch(fetchAsync())
+      },[dispatch])
 
-    const renderUsers = () => {
+      const renderUsers = () => {
         return users.map(user => {
             return <li key={user.id}>{user.name}</li>
         })
     }
+
     const head = () => {
         return (
         <Helmet>
@@ -29,13 +31,19 @@ const UserListPage = () =>  {
     <div>
         {head()}
         User List:
-        <ul>{renderUsers()}</ul>
+        {renderUsers()}
+        <button onClick={() =>
+            dispatch(fetchAsync())
+          }>Refresh</button>
+          <button onClick={() =>
+            dispatch(clear())
+          }>clear</button>
     </div>)
     
 }
 
 function initData(store) {
-    return store.dispatch(fetchUsers())
+    return store.dispatch(fetchAsync())
 }
 
 export default {
