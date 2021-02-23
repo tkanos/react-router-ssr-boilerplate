@@ -6,9 +6,16 @@ import { BrowserRouter } from 'react-router-dom'
 import Routes from "../isomorphic/Routes"
 import { Provider } from 'react-redux'
 import { renderRoutes } from 'react-router-config'
-import { configureStore } from '@reduxjs/toolkit'
+import thunk from 'redux-thunk'
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
 import users from '@pages/UsersListPage/userListReducer.js'
+import axios from 'axios'
+
+
+const apiAxios = axios.create({
+    baseURL: '/api' // client call
+})
 
 
 const reducer = combineReducers({
@@ -18,6 +25,7 @@ const reducer = combineReducers({
 const store = configureStore({
   reducer: reducer,
   preloadedState: window.INITIAL_STATE,
+  middleware: [thunk.withExtraArgument({ api: apiAxios }), ...getDefaultMiddleware()]
 })
 
 ReactDom.hydrate(

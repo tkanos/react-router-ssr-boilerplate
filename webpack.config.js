@@ -26,8 +26,6 @@ const js = {
 };
 
 const commonAliases = {
-    '@actions': path.resolve(__dirname, './src/isomorphic/actions'),
-    '@reducers': path.resolve(__dirname, './src/isomorphic/reducers'),
     '@components': path.resolve(__dirname, './src/isomorphic/components/'),
     '@pages': path.resolve(__dirname, './src/isomorphic/pages/'),
     '@config': path.resolve(__dirname, './src/server/config'),
