@@ -1,4 +1,3 @@
-const nodeExternals = require("webpack-node-externals");
 const path = require("path");
 const webPackNodeExternals = require('webpack-node-externals');
 
@@ -16,6 +15,14 @@ const js = {
     },
 };
 
+const commonAliases = {
+    '@actions': path.resolve(__dirname, './src/isomorphic/actions'),
+    '@reducers': path.resolve(__dirname, './src/isomorphic/reducers'),
+    '@components': path.resolve(__dirname, './src/isomorphic/components/'),
+    '@pages': path.resolve(__dirname, './src/isomorphic/pages/'),
+  }
+  
+
 const serverConfig = {
     mode: "development",
     // inform webpack that we're building a bundle for nodeJS rather than for the browser
@@ -23,7 +30,6 @@ const serverConfig = {
     node: {
         __dirname: false,
     },
-    externals: [nodeExternals()],
     //Root file of our server application
     entry: {
         "index.js": path.resolve(__dirname, "src/server/index.js"),
@@ -37,7 +43,11 @@ const serverConfig = {
         path: path.resolve(__dirname, "dist/build"),
         filename: "[name]",
     },
-
+    resolve: {
+        alias: {
+            ...commonAliases
+        }, 
+    },
     // tell webpack to do not bundle libraries that already exists on node-modules (for server only)
     externals:[webPackNodeExternals()]
 };
@@ -58,6 +68,12 @@ const clientConfig = {
     output: {
         path: path.resolve(__dirname, "dist/public"),
         filename: "[name]",
+    },
+    resolve: {
+        alias: {
+            ...commonAliases
+        }, 
+        aliasFields: ['browser'],
     },
 };
 

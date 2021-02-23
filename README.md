@@ -21,5 +21,3 @@
 - add css
 - add bootstrap
 
-- add path to webpack. 
-

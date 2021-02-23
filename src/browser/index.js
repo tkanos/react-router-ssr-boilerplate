@@ -7,7 +7,7 @@ import Routes from "../isomorphic/Routes"
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
-import reducers from '../isomorphic/reducers'
+import reducers from '@reducers'
 import { renderRoutes } from 'react-router-config'
 import  axios from 'axios'
 
