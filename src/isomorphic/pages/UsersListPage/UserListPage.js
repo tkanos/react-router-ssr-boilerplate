@@ -13,7 +13,7 @@ const UserListPage = () =>  {
     useEffect(() => {
         if (userStatus === 'idle') {
             dispatch(fetchUsers())
-          }
+        }
       },[userStatus, dispatch])
 
       const renderUsers = () => {
@@ -22,16 +22,16 @@ const UserListPage = () =>  {
         })
     }
 
-      let content
-
-  if (userStatus === 'loading') {
-    content = <div className="loader">Loading...</div>
-  } else if (userStatus === 'succeeded') {
-    // Sort posts in reverse chronological order by datetime string
-    content = <ul>{renderUsers()}</ul>
-  } else if (userStatus === 'failed') {
-    content = <div>error</div>
-  }
+    let content
+    if (userStatus === 'loading') {
+        content = <div className="loader">Loading...</div>
+    } else if (userStatus === 'succeeded') {
+        // Sort posts in reverse chronological order by datetime string
+        content = <ul>{renderUsers()}</ul>
+    } else if (userStatus === 'failed') {
+        content = <div>error</div>
+    }
+    
     const head = () => {
         return (
         <Helmet>
