@@ -6,7 +6,7 @@ import axios from 'axios'
 export default (req) => {
 
     const apiAxios = axios.create({
-        baseURL: 'http://localhost:3001', // server call
+        baseURL: process.env.API_URL, // server call
         headers: { cookie: req.get('cookie') || '' }
     })
 

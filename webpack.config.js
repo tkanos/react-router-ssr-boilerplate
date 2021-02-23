@@ -1,5 +1,15 @@
 const path = require("path");
+const dotenv = require("dotenv")
 const webPackNodeExternals = require('webpack-node-externals');
+
+const NODE_ENV = process.env.NODE_ENV || 'production'
+const isDev = NODE_ENV === 'development'
+if (isDev) {
+  dotenv.config({ path: '.env.local' })
+  dotenv.config({ path: '.env.default' })
+}
+
+
 
 // tell webpack to run babel on every file it runs through
 const js = {
@@ -20,6 +30,7 @@ const commonAliases = {
     '@reducers': path.resolve(__dirname, './src/isomorphic/reducers'),
     '@components': path.resolve(__dirname, './src/isomorphic/components/'),
     '@pages': path.resolve(__dirname, './src/isomorphic/pages/'),
+    '@config': path.resolve(__dirname, './src/server/config'),
   }
   
 

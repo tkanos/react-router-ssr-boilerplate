@@ -3,13 +3,13 @@ import express from 'express'
 import proxy from 'express-http-proxy'
 import { matchRoutes } from 'react-router-config'
 import Routes from '../isomorphic/Routes'
-import 'dotenv/config'
+import '@config'
 import mainPage from './templates/mainPage'
 import createStore from '../isomorphic/createStore'
 
 const app = express()
 
-app.use('/api', proxy('http://react-ssr-api.herokuapp.com', {
+app.use('/api', proxy(process.env.API_URL, {
     proxyReqOptDecorator(opts) {
         opts.headers['x-forwarded-host'] = 'localhost:3000'
 
