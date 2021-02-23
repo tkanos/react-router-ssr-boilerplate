@@ -1,20 +1,16 @@
 import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUsers, getUsers } from "./userListReducer";
+import { clear, getUsers, fetchAsync } from "./userListReducer";
 
 const UserListPage = () =>  {
     const dispatch = useDispatch();
 
     const users = useSelector(getUsers);
 
-    const userStatus = useSelector(state => state.users.status)
-
     useEffect(() => {
-        if (userStatus === 'idle') {
-            dispatch(fetchUsers())
-        }
-      },[userStatus, dispatch])
+            dispatch(fetchAsync())
+      },[dispatch])
 
       const renderUsers = () => {
         return users.map(user => {
@@ -22,16 +18,6 @@ const UserListPage = () =>  {
         })
     }
 
-    let content
-    if (userStatus === 'loading') {
-        content = <div className="loader">Loading...</div>
-    } else if (userStatus === 'succeeded') {
-        // Sort posts in reverse chronological order by datetime string
-        content = <ul>{renderUsers()}</ul>
-    } else if (userStatus === 'failed') {
-        content = <div>error</div>
-    }
-    
     const head = () => {
         return (
         <Helmet>
@@ -45,13 +31,19 @@ const UserListPage = () =>  {
     <div>
         {head()}
         User List:
-        {content}
+        {renderUsers()}
+        <button onClick={() =>
+            dispatch(fetchAsync())
+          }>Refresh</button>
+          <button onClick={() =>
+            dispatch(clear())
+          }>clear</button>
     </div>)
     
 }
 
 function initData(store) {
-    return store.dispatch(fetchUsers())
+    return store.dispatch(fetchAsync())
 }
 
 export default {

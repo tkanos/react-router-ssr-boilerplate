@@ -54,12 +54,6 @@
   },
   "jest": {
     "moduleNameMapper": {
-      "^@actions(.*)$": [
-        "<rootDir>/src/isomorphic/actions$1"
-      ],
-      "^@reducers(.*)$": [
-        "<rootDir>/src/isomorphic/reducers$1"
-      ],
       "^@components(.*)$": [
         "<rootDir>/src/isomorphic/components$1"
       ],
