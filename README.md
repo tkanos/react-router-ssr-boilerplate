@@ -10,9 +10,6 @@
 - prometheus
 - tracing
 
-- docker
-- makefile
-
 - production ready files
 
 - add css
